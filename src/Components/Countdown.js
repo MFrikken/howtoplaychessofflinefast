@@ -3,12 +3,12 @@ import Timer from "./Timer";
 import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
 
 
-function Countdown() {
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-    const [milliSeconds, setMilliSeconds] = useState(0);
+function Countdown(props) {
+    const [minutes, setMinutes] = props.minutes;
+    const [seconds, setSeconds] = props.seconds;
+    const [milliSeconds, setMilliSeconds] = props.milliSeconds;
 
-    const [isRunning, setIsRunning] = useState(null);
+    const [isRunning, setIsRunning] = props.isRunning;
 
     const [showEndScreen, setShowEndScreen] = useState({
         show: false,
@@ -17,7 +17,7 @@ function Countdown() {
 
     useEffect(() => {
         let interval;
-        if (isRunning) {
+        if (props.isRunning) {
             interval = setInterval(() => {
                 if (milliSeconds > 0) {
                     setMilliSeconds((milliSeconds) => milliSeconds - 1);
