@@ -19,7 +19,7 @@ function App() {
 
           </div>
           <div className="controls">
-              <Controls />
+              <Controls isR/>
           </div>
       </div>
   );
