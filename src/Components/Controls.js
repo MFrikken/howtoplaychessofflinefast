@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Timer from "./Timer";
 import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
 
 function Controls(props) {
@@ -20,10 +19,10 @@ function Controls(props) {
     const [milliSecondsBlack, setMilliSecondsBlack] = props.milliSecondsBlack;
 
     // true = white, false = black
-    const [currentPlayer, setCurrentPlayer] = true;
+    var currentPlayer = true;
 
     function startTimer() {
-        if (minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0 && minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0) {
+        if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
             if (currentPlayer) {
                 setIsRunningWhite(true);
             } else {
@@ -38,9 +37,9 @@ function Controls(props) {
     function pauseTimer() {
 
         if (isRunningWhite) {
-            setCurrentPlayer(true);
+            currentPlayer = true;
         } else {
-            setCurrentPlayer(false);
+            currentPlayer = false;
         }
 
         setIsRunningWhite(false);
@@ -76,11 +75,11 @@ function Controls(props) {
 
             <br/>
 
-            {!isRunningWhite || !isRunningBlack && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
+            {(!isRunningWhite || !isRunningBlack) && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
                 <BsFillPlayFill/>
             </button>)}
 
-            {isRunningWhite || isRunningBlack && (<button className="btn btn-warning btn-lg" onClick={pauseTimer}>
+            {(isRunningWhite || isRunningBlack) && (<button className="btn btn-warning btn-lg" onClick={pauseTimer}>
                 <BsPauseFill/>
             </button>)}{" "}
             <button className="btn btn-danger btn-lg" onClick={stopTimer}>

@@ -1,28 +1,49 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Countdown from "./Components/Countdown";
 import Controls from "./Components/Controls";
 import './App.css';
 
 function App() {
 
-    const [isRunningBlack, setIsRunningBlack] = useState[null];
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-    const [milliSeconds, setMilliSeconds] = useState(0);
+    var isRunningWhite = useState(false);
+    var minutesWhite = useState(0);
+    var secondsWhite = useState(0);
+    var milliSecondsWhite= useState(0);
 
-  return (
-      <div>
-        <div className="blackSide">
-            <Countdown isRunning={isRunningBlack} minutes={minutes} seconds={seconds} milliSeconds={milliSeconds}/>
+    var isRunningBlack = useState(false);
+    var minutesBlack = useState(0);
+    var secondsBlack = useState(0);
+    var milliSecondsBlack = useState(0);
+
+    return (
+        <div>
+            <div className="blackSide">
+                <Countdown isRunning={isRunningBlack}
+                           minutes={minutesBlack}
+                           seconds={secondsBlack}
+                           milliSeconds={milliSecondsBlack}
+                />
+            </div>
+            <div className="whiteSide">
+                <Countdown isRunning={isRunningWhite}
+                           minutes={minutesWhite}
+                           seconds={secondsWhite}
+                           milliSeconds={milliSecondsWhite}
+                />
+            </div>
+            <div className="controls">
+                <Controls isRunningBlack={isRunningBlack}
+                          minutesBlack={minutesBlack}
+                          secondsBlack={secondsBlack}
+                          milliSecondsBlack={milliSecondsBlack}
+                          isRunningWhite={isRunningWhite}
+                          minutesWhite={minutesWhite}
+                          secondsWhite={secondsWhite}
+                          milliSecondsWhite={milliSecondsWhite}
+                />
+            </div>
         </div>
-          <div className="whiteSide">
-
-          </div>
-          <div className="controls">
-              <Controls isR/>
-          </div>
-      </div>
-  );
+    );
 }
 
 export default App;

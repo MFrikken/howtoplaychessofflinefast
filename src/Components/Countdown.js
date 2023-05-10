@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Timer from "./Timer";
-import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
 
 
 function Countdown(props) {
@@ -40,25 +39,6 @@ function Countdown(props) {
     }, [milliSeconds, seconds, minutes, isRunning, showEndScreen.show]);
 
 
-    // Start Pause & Stop function
-
-    function startTimer() {
-        if (minutes !== 0 || seconds !== 0 || milliSeconds !== 0) {
-            setIsRunning(true);
-            setShowEndScreen({...showEndScreen, show: false});
-        } else {
-            window.alert("Add Time");
-        }
-    }
-
-    function pauseTimer() {
-        setIsRunning(false);
-    }
-
-    function stopTimer() {
-        resetTimer();
-    }
-
     function resetTimer(){
         setIsRunning(false);
         setMilliSeconds(0);
@@ -85,18 +65,6 @@ function Countdown(props) {
             <Timer milliSeconds={milliSeconds} seconds={seconds} minutes={minutes} changeSeconds={changeSeconds} changeMinutes={changeMinutes}/>
 
             <br />
-
-            {!isRunning && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
-                <BsFillPlayFill />
-            </button> )}
-
-            {isRunning && (<button className="btn btn-warning btn-lg" onClick={pauseTimer}>
-                <BsPauseFill />
-            </button> )}{" "}
-            <button className="btn btn-danger btn-lg" onClick={stopTimer}>
-                <BsStopFill />
-            </button>
-
         </div>
     )
 }
