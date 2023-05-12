@@ -16,7 +16,7 @@ function Countdown(props) {
 
     useEffect(() => {
         let interval;
-        if (props.isRunning) {
+        if (isRunning) {
             interval = setInterval(() => {
                 if (milliSeconds > 0) {
                     setMilliSeconds((milliSeconds) => milliSeconds - 1);

@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
 
 function Controls(props) {
 
     const [showEndScreen, setShowEndScreen] = useState({
-        show: false,
-        message: "Time is up!"
+        show: false, message: "Time is up!"
     });
-    
+
     const [isRunningWhite, setIsRunningWhite] = props.isRunningWhite;
     const [minutesWhite, setMinutesWhite] = props.minutesWhite;
     const [secondsWhite, setSecondsWhite] = props.secondsWhite;
@@ -20,14 +19,18 @@ function Controls(props) {
 
     // true = white, false = black
     var currentPlayer = true;
+    let turn = 1;
 
     function startTimer() {
+        console.log("Timer started")
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
             if (currentPlayer) {
                 setIsRunningWhite(true);
             } else {
                 setIsRunningBlack(true);
             }
+             turn++;
+
             setShowEndScreen({...showEndScreen, show: false});
         } else {
             window.alert("Add Time");
@@ -62,20 +65,36 @@ function Controls(props) {
         setMinutesBlack(0);
     }
 
+    useEffect(() => {
+        window.addEventListener("keydown", toggleTimer)
+    }, [])
+
     const toggleTimer = (event) => {
-        if (event.key === 'Space') {
-            startTimer();
+        if (event.keyCode === 32) {
+            if (turn === 1) {
+                setIsRunningWhite(true);
+                turn++;
+            } else {
+                if (currentPlayer) {
+                    setIsRunningWhite(false);
+                    setIsRunningBlack(true);
+                    currentPlayer = false;
+                } else {
+                    setIsRunningWhite(true);
+                    setIsRunningBlack(false);
+                    currentPlayer = true;
+                }
+            }
         }
     };
 
-    return (
-        <div>
+    return (<div>
 
             {showEndScreen.show && <h1 className="title">{showEndScreen.message}</h1>}
 
             <br/>
 
-            {(!isRunningWhite || !isRunningBlack) && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
+            {(!isRunningWhite && !isRunningBlack) && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
                 <BsFillPlayFill/>
             </button>)}
 
@@ -86,8 +105,7 @@ function Controls(props) {
                 <BsStopFill/>
             </button>
 
-        </div>
-    )
+        </div>)
 }
 
 export default Controls;

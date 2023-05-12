@@ -5,7 +5,8 @@ import './App.css';
 
 function App() {
 
-    var isRunningWhite = useState(false);
+    // const [isRunningWhite, setIsRunningWhite] = useState(false);
+    var isRunningWhite = useState(false)
     var minutesWhite = useState(0);
     var secondsWhite = useState(0);
     var milliSecondsWhite= useState(0);
