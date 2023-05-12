@@ -19,18 +19,23 @@ function Controls(props) {
 
     // true = white, false = black
     var currentPlayer = true;
-    let turn = 1;
+    var isFirstTurn = true;
 
     function startTimer() {
         console.log("Timer started")
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
+            console.log("Current player: "+ currentPlayer);
             if (currentPlayer) {
                 setIsRunningWhite(true);
             } else {
                 setIsRunningBlack(true);
             }
-             turn++;
+             if (isFirstTurn) {
+                 console.log("Is first turn: " + isFirstTurn);
+                 isFirstTurn = false;
 
+             }
+            console.log("Is first turn: " + isFirstTurn);
             setShowEndScreen({...showEndScreen, show: false});
         } else {
             window.alert("Add Time");
@@ -41,12 +46,14 @@ function Controls(props) {
 
         if (isRunningWhite) {
             currentPlayer = true;
-        } else {
+        } else if (isRunningBlack) {
             currentPlayer = false;
         }
 
         setIsRunningWhite(false);
         setIsRunningBlack(false);
+
+        console.log("Paused, current player: " + currentPlayer);
     }
 
     function stopTimer() {
@@ -71,9 +78,12 @@ function Controls(props) {
 
     const toggleTimer = (event) => {
         if (event.keyCode === 32) {
-            if (turn === 1) {
+            console.log("Spacebar pressed");
+            console.log("Current player: " + currentPlayer);
+            console.log("Is first turn: " + isFirstTurn);
+            if (isFirstTurn) {
                 setIsRunningWhite(true);
-                turn++;
+                isFirstTurn = false;
             } else {
                 if (currentPlayer) {
                     setIsRunningWhite(false);
