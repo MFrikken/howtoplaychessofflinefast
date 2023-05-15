@@ -18,8 +18,9 @@ function Controls(props) {
     const [milliSecondsBlack, setMilliSecondsBlack] = props.milliSecondsBlack;
 
     // true = white, false = black
-    var currentPlayer = true;
-    var isFirstTurn = true;
+    let currentPlayer = true;
+
+    let isFirstTurn = true;
 
     function startTimer() {
         console.log("Timer started")
@@ -31,9 +32,9 @@ function Controls(props) {
                 setIsRunningBlack(true);
             }
              if (isFirstTurn) {
-                 console.log("Is first turn: " + isFirstTurn);
+                 console.log("Is first turn (1): " + isFirstTurn);
                  isFirstTurn = false;
-
+                 console.log("Is first turn (2): " + isFirstTurn);
              }
             console.log("Is first turn: " + isFirstTurn);
             setShowEndScreen({...showEndScreen, show: false});
@@ -81,7 +82,7 @@ function Controls(props) {
             console.log("Spacebar pressed");
             console.log("Current player: " + currentPlayer);
             console.log("Is first turn: " + isFirstTurn);
-            if (isFirstTurn) {
+           if (isFirstTurn) {
                 setIsRunningWhite(true);
                 isFirstTurn = false;
             } else {
