@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
 
 function Controls(props) {
@@ -18,25 +18,18 @@ function Controls(props) {
     const [milliSecondsBlack, setMilliSecondsBlack] = props.milliSecondsBlack;
 
     // true = white, false = black
-    let currentPlayer = true;
+    let currentPlayer = useRef(true);
 
-    let isFirstTurn = true;
+    let isPaused = useRef(true);
 
     function startTimer() {
-        console.log("Timer started")
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
-            console.log("Current player: "+ currentPlayer);
-            if (currentPlayer) {
+            isPaused.current = false;
+            if (currentPlayer.current) {
                 setIsRunningWhite(true);
             } else {
                 setIsRunningBlack(true);
             }
-             if (isFirstTurn) {
-                 console.log("Is first turn (1): " + isFirstTurn);
-                 isFirstTurn = false;
-                 console.log("Is first turn (2): " + isFirstTurn);
-             }
-            console.log("Is first turn: " + isFirstTurn);
             setShowEndScreen({...showEndScreen, show: false});
         } else {
             window.alert("Add Time");
@@ -46,15 +39,14 @@ function Controls(props) {
     function pauseTimer() {
 
         if (isRunningWhite) {
-            currentPlayer = true;
+            currentPlayer.current = true;
         } else if (isRunningBlack) {
-            currentPlayer = false;
+            currentPlayer.current = false;
         }
 
+        isPaused.current = true;
         setIsRunningWhite(false);
         setIsRunningBlack(false);
-
-        console.log("Paused, current player: " + currentPlayer);
     }
 
     function stopTimer() {
@@ -71,6 +63,8 @@ function Controls(props) {
         setMilliSecondsBlack(0);
         setSecondsBlack(0);
         setMinutesBlack(0);
+
+        isPaused.current = true;
     }
 
     useEffect(() => {
@@ -78,45 +72,38 @@ function Controls(props) {
     }, [])
 
     const toggleTimer = (event) => {
-        if (event.keyCode === 32) {
-            console.log("Spacebar pressed");
-            console.log("Current player: " + currentPlayer);
-            console.log("Is first turn: " + isFirstTurn);
-           if (isFirstTurn) {
-                setIsRunningWhite(true);
-                isFirstTurn = false;
+        if (event.keyCode === 32 && isPaused.current === false) {
+
+            if (currentPlayer.current) {
+                setIsRunningWhite(false);
+                setIsRunningBlack(true);
+                currentPlayer.current = false;
             } else {
-                if (currentPlayer) {
-                    setIsRunningWhite(false);
-                    setIsRunningBlack(true);
-                    currentPlayer = false;
-                } else {
-                    setIsRunningWhite(true);
-                    setIsRunningBlack(false);
-                    currentPlayer = true;
-                }
+                setIsRunningWhite(true);
+                setIsRunningBlack(false);
+                currentPlayer.current = true;
             }
         }
     };
 
     return (<div>
 
-            {showEndScreen.show && <h1 className="title">{showEndScreen.message}</h1>}
+        {showEndScreen.show && <h1 className="title">{showEndScreen.message}</h1>}
 
-            <br/>
+        <br/>
 
-            {(!isRunningWhite && !isRunningBlack) && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
-                <BsFillPlayFill/>
-            </button>)}
+        {(!isRunningWhite && !isRunningBlack) && (<button className="btn btn-accept btn-lg" onClick={startTimer}>
+            <BsFillPlayFill/>
+        </button>)}
 
-            {(isRunningWhite || isRunningBlack) && (<button className="btn btn-warning btn-lg" onClick={pauseTimer}>
-                <BsPauseFill/>
-            </button>)}{" "}
-            <button className="btn btn-danger btn-lg" onClick={stopTimer}>
-                <BsStopFill/>
-            </button>
+        {(isRunningWhite || isRunningBlack) && (<button className="btn btn-warning btn-lg" onClick={pauseTimer}>
+            <BsPauseFill/>
+        </button>)}{" "}
+        <button className="btn btn-danger btn-lg" onClick={stopTimer}>
+            <BsStopFill/>
+        </button>
 
-        </div>)
+    </div>)
 }
 
 export default Controls;
