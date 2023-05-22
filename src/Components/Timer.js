@@ -43,7 +43,7 @@ const TimerWrapper = styled.div`
   }
 `;
 
-function Timer({milliSeconds, seconds, minutes, changeSeconds, changeMinutes}) {
+function Timer({milliSeconds, seconds, minutes, changeSeconds, changeMinutes, increment}) {
 
     return (
         <TimerWrapper>

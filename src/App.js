@@ -17,7 +17,8 @@ function App() {
     var milliSecondsBlack = useState(0);
 
     return (
-        <div>
+        <div className="wrapper">
+            <div className="timers">
             <div className="blackSide">
                 <Countdown isRunning={isRunningBlack}
                            minutes={minutesBlack}
@@ -31,6 +32,7 @@ function App() {
                            seconds={secondsWhite}
                            milliSeconds={milliSecondsWhite}
                 />
+            </div>
             </div>
             <div className="controls">
                 <Controls isRunningBlack={isRunningBlack}

@@ -143,10 +143,41 @@ body {
   font-size: 20px;
 }
 
+.wrapper {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  flex-grow: 1;
+  position: relative;
+  z-index: 10;
+}
+
+.timers {
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  overflow: auto;
+  height: 100vh;
+  position: absolute;
+}
+
 .whiteSide {
-  background: white;
+  background: rgb(239, 239, 239);
+  float:left;
+  width: 50%;
 }
 
 .blackSide {
   background: #282C34;
+  float: right;
+  width: 50%;
+}
+
+.controls {
+  z-index: 9;
+  background: #61dafb;
+  top: 10px;
+  margin: 0 auto;
+  display: inline-block;
+  width: 50%;
 }
