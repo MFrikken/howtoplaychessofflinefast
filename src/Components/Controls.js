@@ -86,9 +86,9 @@ function Controls(props) {
         }
     };
 
-    return (<div>
+    return (<div className="buttons">
 
-        {showEndScreen.show && <h1 className="title">{showEndScreen.message}</h1>}
+        {/* {showEndScreen.show && <h1 className="title">{showEndScreen.message}</h1>} */}
 
         <br/>
 

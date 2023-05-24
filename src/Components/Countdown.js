@@ -32,7 +32,7 @@ function Countdown(props) {
         }
 
         if (minutes === 0 && seconds === 0 && milliSeconds === 1){
-            setShowEndScreen({...showEndScreen, show: true});
+            {/*setShowEndScreen({...showEndScreen, show: true}); */}
             resetTimer();
         }
         return () => clearInterval(interval);

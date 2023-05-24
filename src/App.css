@@ -181,3 +181,12 @@ body {
   width: 20%;
   position: fixed;
 }
+
+.buttons {
+  display: block;
+  background: #222;
+  height: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 5px 4px 6px;
+}
