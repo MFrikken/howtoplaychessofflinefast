@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
+import {parse} from "uuid";
 
 function Controls(props) {
 
@@ -24,15 +25,19 @@ function Controls(props) {
 
     function startTimer() {
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
-            isPaused.current = false;
-            if (currentPlayer.current) {
-                setIsRunningWhite(true);
+            if ((minutesWhite.length <= 2 && parseInt(secondsWhite) <= 59) && (minutesBlack.length <= 2 && parseInt(secondsBlack) <= 59)) {
+                isPaused.current = false;
+                if (currentPlayer.current) {
+                    setIsRunningWhite(true);
+                } else {
+                    setIsRunningBlack(true);
+                }
+                setShowEndScreen({...showEndScreen, show: false});
             } else {
-                setIsRunningBlack(true);
+                window.alert("Not a valid time \n\nMax 99 minutes")
             }
-            setShowEndScreen({...showEndScreen, show: false});
         } else {
-            window.alert("Add Time");
+            window.alert("Add time");
         }
     }
 
@@ -65,6 +70,7 @@ function Controls(props) {
         setMinutesBlack(0);
 
         isPaused.current = true;
+        currentPlayer.current = true;
     }
 
     useEffect(() => {

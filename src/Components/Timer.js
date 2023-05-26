@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {BsStopwatch} from "react-icons/bs";
 import styled from "styled-components";
 
@@ -45,15 +45,17 @@ const TimerWrapper = styled.div`
 
 function Timer({milliSeconds, seconds, minutes, changeSeconds, changeMinutes, increment}) {
 
+    const excludedSymbols = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', '+', '~', '*', '#', '/', '!', '"', '§', '$', '%', '&', '/', '(', ')', '=', '?', '²', '³', '{', '[', ']', '}', '\\', '\'', '´', '`', '-', '_', '.', ':', ',', ';', '<', '>', '|', '@', '^', '°']
+
     return (
         <TimerWrapper>
             <BsStopwatch className="stop-watch"/>
             <div className="d-flex flex-column">
-                <input value={minutes} onChange={changeMinutes}/>
+                <input type="text" pattern="[0-9]*" onKeyDown={ (evt) => excludedSymbols.includes(evt.key)  && evt.preventDefault() } value={minutes} onChange={changeMinutes}/>
             </div>
             {" "}
             <div className="d-flex flex-column">
-                <input value={seconds} onChange={changeSeconds}/>
+                <input type="text" pattern="[0-9]*" onKeyDown={ (evt) => excludedSymbols.includes(evt.key)  && evt.preventDefault() } value={seconds} onChange={changeSeconds}/>
             </div>
             {" "}
             <div className="d-flex flex-column">
