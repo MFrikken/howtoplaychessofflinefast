@@ -25,7 +25,7 @@ function Controls(props) {
 
     function startTimer() {
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
-            if ((minutesWhite.length <= 2 && parseInt(secondsWhite) <= 59) && (minutesBlack.length <= 2 && parseInt(secondsBlack) <= 59)) {
+            if ((minutesWhite.length <= 2 && parseInt(secondsWhite) <= 59 && parseInt(milliSecondsWhite) <= 99) && (minutesBlack.length <= 2 && parseInt(secondsBlack) <= 59) && parseInt(milliSecondsBlack) <= 99) {
                 isPaused.current = false;
                 if (currentPlayer.current) {
                     setIsRunningWhite(true);
