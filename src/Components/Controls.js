@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {BsFillPlayFill, BsPauseFill, BsStopFill} from "react-icons/bs";
-import {parse} from "uuid";
 
 function Controls(props) {
 
@@ -25,7 +24,7 @@ function Controls(props) {
 
     function startTimer() {
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
-            if ((minutesWhite.length <= 2 && parseInt(secondsWhite) <= 59 && parseInt(milliSecondsWhite) <= 99) && (minutesBlack.length <= 2 && parseInt(secondsBlack) <= 59) && parseInt(milliSecondsBlack) <= 99) {
+            if ((parseInt(minutesWhite, 10) <= 99 && parseInt(secondsWhite, 10) <= 59 && parseInt(milliSecondsWhite, 10) <= 99) && (parseInt(minutesBlack, 10) <= 99 && parseInt(secondsBlack, 10) <= 59) && parseInt(milliSecondsBlack, 10) <= 99) {
                 isPaused.current = false;
                 if (currentPlayer.current) {
                     setIsRunningWhite(true);
