@@ -22,9 +22,16 @@ function Controls(props) {
 
     let isPaused = useRef(true);
 
+    let isFirstTurn = useRef(true);
+
     function startTimer() {
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
             if ((parseInt(minutesWhite, 10) <= 99 && parseInt(secondsWhite, 10) <= 59 && parseInt(milliSecondsWhite, 10) <= 99) && (parseInt(minutesBlack, 10) <= 99 && parseInt(secondsBlack, 10) <= 59) && parseInt(milliSecondsBlack, 10) <= 99) {
+                if (isFirstTurn.current) {
+                    fetch('http://localhost:8080/playedGames/increaseCount')
+                        .then(response => console.log(response.json()));
+                    isFirstTurn.current = false;
+                }
                 isPaused.current = false;
                 if (currentPlayer.current) {
                     setIsRunningWhite(true);
@@ -70,6 +77,7 @@ function Controls(props) {
 
         isPaused.current = true;
         currentPlayer.current = true;
+        isFirstTurn.current = true;
     }
 
     useEffect(() => {

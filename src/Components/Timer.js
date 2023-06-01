@@ -59,7 +59,7 @@ function Timer({milliSeconds, seconds, minutes, changeSeconds, changeMinutes, in
             </div>
             {" "}
             <div className="d-flex flex-column">
-                <input value={milliSeconds}/>
+                <input value={milliSeconds} readOnly={true}/>
             </div>
         </TimerWrapper>
     )
