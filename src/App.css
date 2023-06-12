@@ -190,3 +190,10 @@ body {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.4) 5px 4px 6px;
 }
+
+.version {
+  position: fixed;
+  z-index: 8;
+  left: 5px;
+  bottom: 5px;
+}
