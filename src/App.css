@@ -200,7 +200,7 @@ body, html {
   bottom: 5px;
 }
 
-.license-text {
+.license {
   padding-top: 50px;
   height: 100%;
   width: 100%;
@@ -208,6 +208,15 @@ body, html {
   text-align: center;
   font-size: 33px;
   line-height: 1.6;
+}
+
+.license-text {
+  width: 35%;
+  color: #222222;
+  text-align: center;
+  font-size: 33px;
+  line-height: 1.6;
+  margin: auto;
 }
 
 .link {
