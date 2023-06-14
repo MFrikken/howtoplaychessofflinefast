@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import License from "./License";
 
 
 function VersionText() {
