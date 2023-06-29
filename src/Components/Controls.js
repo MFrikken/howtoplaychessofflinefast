@@ -28,7 +28,7 @@ function Controls(props) {
         if ((minutesWhite !== 0 || secondsWhite !== 0 || milliSecondsWhite !== 0) && (minutesBlack !== 0 || secondsBlack !== 0 || milliSecondsBlack !== 0)) {
             if ((parseInt(minutesWhite, 10) <= 99 && parseInt(secondsWhite, 10) <= 59 && parseInt(milliSecondsWhite, 10) <= 99) && (parseInt(minutesBlack, 10) <= 99 && parseInt(secondsBlack, 10) <= 59) && parseInt(milliSecondsBlack, 10) <= 99) {
                 if (isFirstTurn.current) {
-                    fetch('http://localhost:8080/playedGames/increaseCount')
+                    fetch('https://howtoplaychessofflinefast.com:8080/playedGames/increaseCount')
                         .then(response => console.log(response.json()));
                     isFirstTurn.current = false;
                 }
@@ -40,7 +40,7 @@ function Controls(props) {
                 }
                 setShowEndScreen({...showEndScreen, show: false});
             } else {
-                window.alert("Not a valid time \n\nMax 99 minutes")
+                window.alert("Not a valid time \n\nMax 99 minutes \n\nFormat: MM SS MS")
             }
         } else {
             window.alert("Add time");
