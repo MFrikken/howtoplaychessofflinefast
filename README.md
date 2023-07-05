@@ -1,6 +1,6 @@
 # How To Play Chess Offline (fast)
 
-This is the official repository for the website **[howtoplaychessofflinefast.com](howtoplaychessofflinefast.com)**.\
+This is the official repository for the website **[howtoplaychessofflinefast.com](https://howtoplaychessofflinefast.com)**.\
 This website aims to provide quick access to a free and simple chess clock.
 
 ## Table of Contents
