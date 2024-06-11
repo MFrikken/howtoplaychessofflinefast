@@ -10,7 +10,7 @@ function License() {
             <a className="link" href={"https://www.gnu.org/licenses/gpl-3.0-standalone.html"}>COPYING</a>
             <br/>
             <a className="link"
-               href={"https://gitlab.hs-osnabrueck.de/mfrinken/howtoplaychessofflinefast.git"}>GitLab</a>
+               href={"https://github.com/MFrikken/howtoplaychessofflinefast"}>GitHub</a>
             <br/>
             <br/>
             <div className="license-text">

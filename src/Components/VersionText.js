@@ -15,7 +15,7 @@ function VersionText() {
     return (
         <VersionWrapper >
             <div className="version">
-                   <a href={"/License"} style={{ color: "white"}}>v1.0</a>
+                   <a href={"/License"} style={{ color: "white"}}>v1.1</a>
             </div>
         </VersionWrapper>
     );
