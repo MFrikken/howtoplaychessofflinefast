@@ -8,7 +8,7 @@ function App() {
 
     return (
             <Routes>
-                <Route exact path={"/"} element={<Main />} />
+                <Route exact path={"/"} element={<Main/>} />
                 <Route exact path={"/License"} element={<License/>} />
             </Routes>
     );
