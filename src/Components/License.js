@@ -5,7 +5,7 @@ function License() {
 
     return (
         <div className="license">
-            <h2>Copyright (c) 2023 Frinken Milan</h2>
+            <h2>Copyright (c) 2023-2025 MFrikken</h2>
             <br/>
             <a className="link" href={"https://www.gnu.org/licenses/gpl-3.0-standalone.html"}>COPYING</a>
             <br/>
